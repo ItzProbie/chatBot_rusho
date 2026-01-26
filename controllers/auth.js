@@ -19,9 +19,9 @@ exports.signup = async(req , res) => {
         }
 
         if(password.length < 5){
-            return res.status(400),json({
+            return res.status(400).json({
                 success : false,
-                message : "Password length must be atleast 8"
+                message : "Password length must be atleast 8 characters long"
             });
         }
 

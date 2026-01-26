@@ -29,7 +29,8 @@ module.exports.chat = async(req, res) => {
         }
         const recentMessages = session.messages.slice(-10);
         recentMessages.forEach(msg => {
-            contextMessages.push({ role: msg.role, parts: [{ text: msg.content }] });
+            const role = msg.role === 'ai' ? 'model' : 'user';
+            contextMessages.push({ role, parts: [{ text: msg.content }] });
         });
         contextMessages.push({ role: "user", parts: [{ text: mssg }] });
 
@@ -37,14 +38,23 @@ module.exports.chat = async(req, res) => {
             model: process.env.GEMINI_MODEL,
             contents: contextMessages,
             config: {
-                systemInstruction: `You are a Data structure and Algorithm Instructor. You will only reply to the problem related to 
-            Data structure and Algorithm. You have to solve query of user in simplest way
-            If user ask any question which is not related to Data structure and Algorithm, reply him rudely
-            Example: If user ask, How are you
-            You will reply: You dumb ask me some sensible question, like this message you can reply anything more rudely
-            
-            You have to reply him rudely if question is not related to Data structure and Algorithm.
-            Else reply him politely with simple explanation`,
+                systemInstruction: 
+                `
+                You are a supportive mental health companion.
+                You are NOT a therapist, doctor, or medical professional.
+
+
+                Rules you must follow:
+                - Never diagnose mental illness
+                - Never encourage self-harm or suicide
+                - Never validate harmful intentions
+                - Use empathetic, non-judgmental language
+                - Encourage real-world support when distress is severe
+                - If the user expresses suicidal thoughts, prioritize safety and suggest contacting local emergency services or helplines
+
+
+                Your goal is to listen, validate feelings, and offer gentle coping strategies.
+                `,
             },
         });
 

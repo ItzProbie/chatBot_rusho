@@ -11,6 +11,6 @@ const router = express.Router();
 const { chat } = require("../controllers/aiMessenger");
 const { auth } = require("../middlewares/auth");
 
-router.get("/chat", auth, chat);
+router.post("/chat", auth, chat);
 
 module.exports = router;
