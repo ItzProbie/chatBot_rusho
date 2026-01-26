@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/user");
 const chatSession = require("../models/chatSession");
 
 exports.getMySessions = async(req , res) => {
