@@ -1,6 +1,6 @@
 const ai = require("../config/aiConnector");
 const ChatSession = require("../models/chatSession");
-require("dotenv").config();
+require("dotenv").config({ quiet: true });
 
 module.exports.chat = async(req, res) => {
     

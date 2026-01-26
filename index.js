@@ -25,7 +25,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-require("dotenv").config();
+require("dotenv").config({ quiet: true });
 
 
 // const db = require("./config/dbConnector");
