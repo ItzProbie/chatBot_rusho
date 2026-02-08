@@ -26,6 +26,16 @@ const chatSessionSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    moodAnalysis: {
+        anxiety: { type: Number, default: null },
+        stress: { type: Number, default: null },
+        depression: { type: Number, default: null },
+        overall: { type: Number, default: null }
+    },
+    lastMoodAnalysisMessageCount: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true });
 

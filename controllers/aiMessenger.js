@@ -113,7 +113,19 @@ module.exports.chat = async(req, res) => {
         });
 
     }catch(err){
+        
+        const status = err.status || err.response?.status || err.statusCode;
+        
+        if (status === 429) {
+            console.log("API quota reached");
+            return res.status(429).json({
+                success: false,
+                message: "API quota exceeded. Please try again later."
+            });
+        }
+        
         console.log(err);
+
         return res.status(500).json({
             success : false,
             message : "Cant connect to the chatbot, plz try again later"

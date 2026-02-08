@@ -7,6 +7,7 @@ const db  =require("./config/dbConnector");
 const aiMessenger = require("./routes/aiMessenger");
 const auth = require("./routes/auth");
 const chat = require("./routes/chat");
+const moodAnalysis = require("./routes/moodAnalysis");
 
 db.connect();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(cors());
 app.use("/chatbot" , aiMessenger);
 app.use("/auth", auth);
 app.use("/chat", chat);
+app.use("/mood-analysis", moodAnalysis);
 
 app.get("/" , (req , res) => {
     res.send(`<h1>Server started successfully</h1>`);
