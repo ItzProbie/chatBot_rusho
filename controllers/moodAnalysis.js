@@ -91,7 +91,14 @@ Respond ONLY with a JSON object in this exact format:
         return res.status(200).json({
             success: true,
             averageMood: avgMood,
-            totalSessions: sessions.length
+            totalSessions: sessions.length,
+            sessionsData: validSessions.map(s => ({
+                date: s.createdAt,
+                anxiety: s.moodAnalysis.anxiety,
+                stress: s.moodAnalysis.stress,
+                depression: s.moodAnalysis.depression,
+                overall: s.moodAnalysis.overall
+            }))
         });
 
     } catch(err) {
