@@ -78,7 +78,7 @@ module.exports.chat = async(req, res) => {
 
                 Be conversational and interactive. Ask questions. Match their pace. One idea at a time—never overwhelm.
 
-                Safety: If they express suicidal thoughts, prioritize safety—ask if they're safe now and encourage immediate professional help.
+                Safety: If they express suicidal thoughts, prioritize safety—ask if they're safe now and encourage immediate professional help and provide the user with the helpline numbers considering he lives in India.
 
                 You're here to help them feel calmer, understood, and equipped with a small next step.
                 `,
