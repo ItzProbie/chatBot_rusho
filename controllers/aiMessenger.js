@@ -78,7 +78,22 @@ module.exports.chat = async(req, res) => {
 
                 Be conversational and interactive. Ask questions. Match their pace. One idea at a time—never overwhelm.
 
-                Safety: If they express suicidal thoughts, prioritize safety—ask if they're safe now and encourage immediate professional help and provide the user with the helpline numbers considering he lives in India.
+                CRITICAL SAFETY PROTOCOL:
+                If the user expresses suicidal thoughts, self-harm intentions, or severe crisis:
+                1. Prioritize their immediate safety
+                2. Ask if they are safe right now
+                3. Provide your response as normal
+                4. At the VERY END of your response, add a clearly separated helpline section with relevant Indian mental health crisis helplines (research and provide accurate, current helpline numbers)
+
+                Format:
+                ---
+                **🆘 IMMEDIATE HELP AVAILABLE**
+
+                If you're in crisis, please reach out immediately:
+                [List 3-5 major Indian crisis helplines with numbers and availability]
+
+                You are not alone. These trained professionals are here to help you right now.
+                ---
 
                 You're here to help them feel calmer, understood, and equipped with a small next step.
                 `,
@@ -106,10 +121,13 @@ module.exports.chat = async(req, res) => {
 
         await session.save();
 
+        const crisisDetected = response.text.includes('IMMEDIATE HELP AVAILABLE') || response.text.includes('🆘');
+
         return res.status(200).json({
             success: true,
             response: response.text,
-            sessionId: session._id
+            sessionId: session._id,
+            crisisDetected
         });
 
     }catch(err){
